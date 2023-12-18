@@ -75,7 +75,7 @@ jobs:
       run: ctest --build-config ${{ matrix.build_type }}
       
     - name: upload binaries
-        uses: actions/upload-artifact@V3
+        uses: actions/download-artifact@v4.0.0
         with:
           name: binaries
           path: ${{ github.workspace }}/build
