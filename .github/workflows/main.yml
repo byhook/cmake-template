@@ -43,8 +43,17 @@ jobs:
       - name: Build
         # 构建项目
         run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
+
+      - name: Zip the Build
+        run: zip -r ${{ secrets.ReleaseZipName }} ${{ steps.strings.outputs.build-output-dir }}/cmake_template
+
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          files: ${{ steps.strings.outputs.build-output-dir }}/cmake_template
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./${{ secrets.ReleaseZipName }}.zip
+          asset_name: ${{ secrets.ReleaseZipName }}.zip
+          asset_content_type: application/zip
