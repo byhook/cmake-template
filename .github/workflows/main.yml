@@ -16,10 +16,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       # 上传附件
       - run: mkdir -p path/to/artifact
       - run: echo hello > path/to/artifact/world.txt
+
+      - name: Archive Release
+        uses: thedoctor0/zip-release@main
+        with:
+          type: 'zip'
+          filename: 'release.zip'
+          path: 'path/to/artifact/'
+          exclusions: '*.git* /*node_modules/* .editorconfig'
+
       - uses: actions/upload-artifact@v4
         with:
           name: my-artifact
@@ -31,5 +39,5 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           allowUpdates: true
-          artifacts: "release.zip,path/to/artifact/world.txt"
+          artifacts: "release.zip"
           token: ${{ secrets.GITHUB_TOKEN }}
