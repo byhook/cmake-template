@@ -31,5 +31,5 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           allowUpdates: true
-          artifacts: path/to/artifact/world.txt
+          artifacts: "release.zip,path/to/artifact/world.txt"
           token: ${{ secrets.GITHUB_TOKEN }}
