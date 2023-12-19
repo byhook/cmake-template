@@ -45,7 +45,7 @@ jobs:
         run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
 
       - name: Zip the Build
-        run: zip -r ${{ secrets.ReleaseZipName }} ${{ steps.strings.outputs.build-output-dir }}/cmake_template
+        run: zip -r ${{ secrets.ReleaseZipName }} ${{ steps.strings.outputs.build-output-dir }}/
 
       - name: Release
         uses: softprops/action-gh-release@v1
