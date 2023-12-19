@@ -17,9 +17,11 @@ jobs:
         build_type: [ Release ]
         include:
           - os: windows-latest
+            artifact: "Windows-MSVC.zip",
             c_compiler: cl
             cpp_compiler: cl
           - os: ubuntu-latest
+            artifact: "Linux-GCC.zip",
             c_compiler: gcc
             cpp_compiler: g++
 
