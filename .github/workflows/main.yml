@@ -29,14 +29,14 @@ jobs:
           exclusions: '*.git* /*node_modules/* .editorconfig'
 
       # 发布release版本
-#      - name: Release version
-#        uses: softprops/action-gh-release@v1
-#        if: startsWith(github.ref, 'refs/tags/')
-#        with:
-#          files: "release.zip"
-
-      - name: Release
-        uses: ncipollo/release-action@v1.12.0
+      - name: Release version
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
         with:
-          artifacts: "release.zip"
-          token: ${{ secrets.GITHUB_TOKEN }}
+          files: "release.zip"
+
+#      - name: Release
+#        uses: ncipollo/release-action@v1.12.0
+#        with:
+#          artifacts: "release.zip"
+#          token: ${{ secrets.GITHUB_TOKEN }}
